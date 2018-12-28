@@ -4,13 +4,14 @@ body {
 }
 
 .background {
-background-color: brown;
+background-color: rgb(165, 132, 42);
 background-image: url("../images/bloom-blossom-colorful-68507.jpg");
 background-size: cover;
 background-blend-mode: multiply;
 }
 
 #new-game-button{
+  position: relative;
   outline: none;
   border: none;
   cursor: pointer;
@@ -24,4 +25,23 @@ background-blend-mode: multiply;
   padding: 25px;
   border-radius: 20px;
   box-shadow: 0 6px #5f5f5e;
+}
+
+#new-game-button:hover {
+box-shadow: 0 4px #5f5f5e;
+top: 2px;
+}
+
+#new-game-button:active {
+box-shadow: 0 0px #5f5f5e;
+top: 6px;
+}
+
+#placeholder-section{
+  background-color: mediumpurple
+}
+
+#placeholders{
+letter-spacing: 6px;
+font-size: 40px;
 }

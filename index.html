@@ -12,27 +12,26 @@
 </head>
 <body>
   
-<div class="jumbotron-fluid background">
+<div class="jumbotron-fluid background py-5">
   <div class="container py-5">
     <div class="row align-items-center">
       <div class="col-12 col-md-8 my-3">
         <img src="assets/images/bloom-blossom-colorful-68507.jpg" width="250px" alt="Flowers">
-        <div class="col-12 col-md-4 my-3">
-          <h1>
-            FLOWER WORD GAME
-          </h1>
-          <button id="new-game-button">
-            <i class="fas fa-gamepad"></i>
-            BEGIN A NEW GAME
-          </button>
-
-        </div>
       </div>
+      <div class="col-12 col-md-4 my-3">
+        <h1>
+         FLOWER WORD GAME
+        </h1>
+        <button id="new-game-button">
+          <i class="fas fa-gamepad"></i>
+          BEGIN A NEW GAME
+        </button>
+      </div> 
     </div>
   </div>
 </div>
 
-<div class="container fluid">
+<div class="container-fluid">
   <div class="row">
     <div class="col-12 text-center py-5" id="placeholder-section">
       <div class="container">
@@ -52,28 +51,34 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12 col-md-4 text-center py-5">
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-4 text-center py-5">
         <h3> 
           Guesses Remaining: <span id="guesses-remaining">0</span>
         </h3>
       </div>
       <div class="col-12 col-md-4 text-center py-5">
         <h3> 
-          Number of Games Won: <span id="wins">0</span>
+          Games Won: <span id="wins">0</span>
         </h3>
       </div>
-      <div class="col-12 col-md-4 text-center">
+      <div class="col-12 col-md-4 text-center py-5">
         <h3> 
-          Number of Games Lost: <span id="losses py-5">0</span>
+          Games Lost: <span id="losses">0</span>
         </h3>
       </div>
     </div>
   </div>
-</div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+  </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script src="game-function.js">
+</script>
+<script src="game-object.js"></script>
 </body>
 </html>
