@@ -1,0 +1,27 @@
+body {
+  color: bisque;
+  background-color: blueviolet
+}
+
+.background {
+background-color: brown;
+background-image: url("../images/bloom-blossom-colorful-68507.jpg");
+background-size: cover;
+background-blend-mode: multiply;
+}
+
+#new-game-button{
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: block;
+  background-color: blanchedalmond;
+  font-style: 22p;
+  font-weight: bold;
+  color: gray;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 6px #5f5f5e;
+}
