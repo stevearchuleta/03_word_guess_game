@@ -5,7 +5,8 @@ var $guessedLetters = document.getElementById('guessed-letters');
 var $guessesRemaining = document.getElementById('guesses-remaining');
 var $wins = document.getElementById('wins');
 var $losses = document.getElementById('losses');
-//Create variables for game -- a wordbank, wins, losses, guesses remaining, picked word, game in progress, picked word placeholder, guessed letter bank, incorrect letter bank)
+
+//Create variables for game -- a wordBank, wins, losses, guessesRemaining, gameRunning, pickedWord, pickedWordPlaceholderArr, guessedLetterBank, incorrectLetterBank)
 var wordBank = ['dahlia', 'zinnia', 'camellia', 'rose', 'petunia', 'azalea', 'begonia', 'carnation', 'narcissus', 'daisy', 'lilac', 'ivy', 'hyacinth', 'poppy', 'basil', 'violet', 'gardenia', 'sage', 'iris', 'holly', 'yarrow', 'jasmine', 'hazel', 'heather', 'marigold'];
 var wins = 0;
 var losses = 0;
@@ -37,7 +38,7 @@ function newGame(){
       pickedWordPlaceholderArr.push('_');
     }
   }
-//STEP FOUR: Manipulate/Write/Reset all newGame info/stats to the DOM. .join method is used to convert pickedWordPlaceholderArr into a string, thereby not priniting the commas. Again, use of $ is to remind me that that var is, indeed, a DOM element.
+//STEP FOUR: Manipulate/Write/Reset all newGame info/stats to the DOM. Again, use of $ is to remind me that that var is, indeed, a DOM element. .join method is used to convert pickedWordPlaceholderArr into a string, thereby not priniting the commas. 
 $guessesRemaining.textContent = guessesRemaining;
 $placeholders.textContent = pickedWordPlaceholderArr.join('');
 $guessedLetters.textContent = incorrectLetterBank;
@@ -48,20 +49,20 @@ function letterGuess(letter){
   console.log(letter);
     
     if(gameRunning === true && guessedLetterBank.indexOf(letter) === -1){
-    //run the game logic
+    //then run the game logic
 
-    guessedLetterBank.push('letter');
+    guessedLetterBank.push(letter);
     // Check if the guessed letter is within the pickedWord
     for(var i = 0; i<pickedWord.length; i++){
       //Convert both values to lower case in order to compare them correctly
       if(pickedWord[i].toLowerCase() === letter.toLowerCase()){
-        //if these are a match, swap out the character in the placeholder with the actual letter
+        //if these lowercase letters are a match, then swap out the character in the placeholder with the actual letter.
         pickedWordPlaceholderArr[i] = pickedWord[i];
       }
     }
 
     $placeholders.textContent = pickedWordPlaceholderArr.join('');
-
+    checkIncorrect(letter);
     }
     else{
         if(gameRunning === false){
@@ -78,7 +79,7 @@ function letterGuess(letter){
 //Create checkIncorrect(letter) function
 function checkIncorrect(letter){
 
-  //if statement... so that if the user's guess is incorrect, this statement verifies that the user's letter didn't make it into the pickedWordPlaceholderArr. 
+  //if statement... so that if the user's guess is incorrect, this statement verifies that the user's letter (whether lowercase or uppercase) didn't make it into the pickedWordPlaceholderArr. 
   if(pickedWordPlaceholderArr.indexOf(letter.toLowerCase()) === -1 && 
   pickedWordPlaceholderArr.indexOf(letter.toUpperCase()) === -1) {
     
@@ -88,17 +89,33 @@ function checkIncorrect(letter){
     //Add the incorrect guess into the incorrectLetterBank.
     incorrectLetterBank.push(letter);
    
-    //Write a new bank of incorrect letters guessed to DOM
+    //Write a new bank of incorrectly guessed letters to DOM.
     $guessedLetters.textContent = incorrectLetterBank.join(' ');
     
     //Write new amount of guessesRemaining to DOM
     $guessesRemaining.textContent = guessesRemaining;
   }
+  checkLoss();
 }
-//Create checkLose
-
+//Create checkLoss
+function checkLoss(){
+  if(guessesRemaining === 0){
+    losses++;
+    gameRunning = false;
+    $losses.textContent = losses;
+    $placeholders.textContent = pickedWord;
+    
+  }
+  checkWin();
+}
 //Create checkWin
-
+function checkWin(){
+  if(pickedWord.toLowerCase() === pickedWordPlaceholderArr.join('').toLowerCase()){
+    wins++;
+    gameRunning = false;
+    $wins.textContent = wins;
+  }
+}
 //Add event listener to newGameButton from the DOM, reference the newGame function. When a user clicks the button, the newGame function runs as the callback.
 $newGameButton.addEventListener('click', newGame);
 //Add onkeyup event to trigger letterGuess
