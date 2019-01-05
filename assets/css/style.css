@@ -10,6 +10,19 @@ background-size: cover;
 background-blend-mode: multiply;
 }
 
+.dangled-flower{
+  /* background-size: 350px 225px; */
+  background-size: 900px 600px;
+  background-image: url("../images/bloom-blossom-colorful-68507.jpg");
+  /* width: 350px; */
+  /* min-width: 100px; */
+  height: 225px;
+  background-repeat: no-repeat;
+  margin-right: 80px;
+  text-align: center;
+  padding-top: 25px;
+}
+
 #new-game-button{
   position: relative;
   outline: none;
@@ -45,3 +58,41 @@ top: 6px;
 letter-spacing: 6px;
 font-size: 40px;
 }
+
+
+
+@-webkit-keyframes swinging{
+  0%{-webkit-transform: rotate(10deg);}
+  50%{-webkit-transform: rotate(-5deg)}
+  100%{-webkit-transform: rotate(10deg);}
+}
+
+@keyframes swinging{
+  0%{transform: rotate(10deg);}
+  50%{transform: rotate(-5deg)}
+  100%{transform: rotate(10deg);}
+}
+
+.swingimage{
+  -webkit-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -webkit-animation: swinging 3.5s ease-in-out forwards infinite;
+  animation: swinging 3.5s ease-in-out forwards infinite;
+  /* height: 48px;
+  width: 40px; */
+  color: black;
+display: inline-block;
+color: black;
+display: inline-block;
+font-size: 130px;
+font-family: serif;
+}
+
+/* .l{
+  margin-top: 45px; 
+}
+
+.f{
+  margin-top: 0px;
+  position: static;
+}*/
