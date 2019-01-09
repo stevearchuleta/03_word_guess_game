@@ -1,10 +1,12 @@
 //Grab reference to my DOM elements. use $ to remind me that these variables are, if fact, DOM elements.
 var $newGameButton = document.getElementById('new-game-button');
+var $swinging = document.getElementById('swinging');
 var $placeholders = document.getElementById('placeholders');
 var $guessedLetters = document.getElementById('guessed-letters');
 var $guessesRemaining = document.getElementById('guesses-remaining');
 var $wins = document.getElementById('wins');
 var $losses = document.getElementById('losses');
+
 
 //Create variables for game -- a wordBank, wins, losses, guessesRemaining, gameRunning, pickedWord, pickedWordPlaceholderArr, guessedLetterBank, incorrectLetterBank)
 var wordBank = ['dahlia', 'zinnia', 'camellia', 'rose', 'petunia', 'azalea', 'begonia', 'carnation', 'narcissus', 'daisy', 'lilac', 'ivy', 'hyacinth', 'poppy', 'basil', 'violet', 'gardenia', 'sage', 'iris', 'holly', 'yarrow', 'jasmine', 'hazel', 'heather', 'marigold'];
@@ -42,6 +44,7 @@ function newGame(){
 $guessesRemaining.textContent = guessesRemaining;
 $placeholders.textContent = pickedWordPlaceholderArr.join('');
 $guessedLetters.textContent = incorrectLetterBank;
+
 }
 
 //Create letterGuess function, which takes in the letter pressed by user and compares that letter to those in the selected word from the word array.
@@ -58,10 +61,12 @@ function letterGuess(letter){
       if(pickedWord[i].toLowerCase() === letter.toLowerCase()){
         //if these lowercase letters are a match, then swap out the character in the placeholder with the actual letter.
         pickedWordPlaceholderArr[i] = pickedWord[i];
+        
       }
     }
 
     $placeholders.textContent = pickedWordPlaceholderArr.join('');
+    //$swinging.textContent = swinging.join('');
     checkIncorrect(letter);
     }
     else{
@@ -117,10 +122,23 @@ function checkWin(){
   }
 }
 //Add event listener to newGameButton from the DOM, reference the newGame function. When a user clicks the button, the newGame function runs as the callback.
+
+function createSwing() {
+  $swinging.innerHTML = '';
+  for(var i = 0; i<=pickedWordPlaceholderArr.length-1; i++){
+    var div = document.createElement('div')
+    div.className = 'swingimage';
+    div.textContent = pickedWordPlaceholderArr[i];
+    $swinging.append(div);
+  }
+  
+}
+
 $newGameButton.addEventListener('click', newGame);
 //Add onkeyup event to trigger letterGuess
 document.onkeyup = function(event){
   if(event.keyCode >= 65 && event.keyCode <= 90){
     letterGuess(event.key);
   }
+  createSwing();
 }
