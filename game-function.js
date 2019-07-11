@@ -20,7 +20,7 @@ var pickedWordPlaceholderArr = [];
 var guessedLetterBank = [];
 var incorrectLetterBank = [];
 
-//Create newGame function to reset all stats, pick new word, and create placeholders. This occurs when user presses button.
+//Create newGame function to reset all stats, to pick a new word, and to create placeholders. This occurs when user presses the new game button.
 function newGame(){
   //STEP ONE: Reset all game stats/info
   gameRunning = true;
@@ -29,7 +29,7 @@ function newGame(){
   incorrectLetterBank = [];
   pickedWordPlaceholderArr = [];
 
-  //STEP TWO: Pick a new word by generating a random index via wordBank and wordBank.length; assign the new word to var pickedWord.
+  //STEP TWO: Pick a new word BY GENERATING A RANDOM INDEX via the wordBank and the wordBank.length property; assign the new word to var pickedWord.
   pickedWord = wordBank[Math.floor(Math.random() * wordBank.length)];
 
   //STEP THREE: Create placeholders from new pickedWord. Run a for-loop over the pickedWord. Use 'push' method to take into account: 1) any empty spaces in pickedWord, and 2) the underscores that represent letters in the pickedWord. 
@@ -40,16 +40,16 @@ function newGame(){
       pickedWordPlaceholderArr.push('_');
     }
   }
-//STEP FOUR: Manipulate/Write/Reset all newGame info/stats to the DOM. Again, use of $ is to remind me that that var is, indeed, a DOM element. .join method is used to convert pickedWordPlaceholderArr into a string, thereby not priniting the commas. 
+//STEP FOUR: Manipulate/Write/Reset all newGame info/stats to the DOM. (Again, the use of $ in these variables is my chosen programming technique to remind me that that var is, indeed, a DOM element.) .join method is used to convert pickedWordPlaceholderArr into a string, thereby not priniting the commas that exist between each element of the array. 
 $guessesRemaining.textContent = guessesRemaining;
 $placeholders.textContent = pickedWordPlaceholderArr.join('');
 $guessedLetters.textContent = incorrectLetterBank;
 
 }
 
-//Create letterGuess function, which takes in the letter pressed by user and compares that letter to those in the selected word from the word array.
+//Create letterGuess function, which takes in the letter pressed by user and compares that letter to those in the selected word from the picked word array.
 function letterGuess(letter){
-  console.log(letter);
+  console.log('letterGuess: ', letter);
     
     if(gameRunning === true && guessedLetterBank.indexOf(letter) === -1){
     //then run the game logic
@@ -102,7 +102,8 @@ function checkIncorrect(letter){
   }
   checkLoss();
 }
-//Create checkLoss
+
+//Create checkLoss function
 function checkLoss(){
   if(guessesRemaining === 0){
     losses++;
@@ -113,7 +114,8 @@ function checkLoss(){
   }
   checkWin();
 }
-//Create checkWin
+
+//Create checkWin function
 function checkWin(){
   if(pickedWord.toLowerCase() === pickedWordPlaceholderArr.join('').toLowerCase()){
     wins++;
@@ -123,16 +125,6 @@ function checkWin(){
 }
 //Add event listener to newGameButton from the DOM, reference the newGame function. When a user clicks the button, the newGame function runs as the callback.
 
-function createSwing() {
-  $swinging.innerHTML = '';
-  for(var i = 0; i<=pickedWordPlaceholderArr.length-1; i++){
-    var div = document.createElement('div')
-    div.className = 'swingimage';
-    div.textContent = pickedWordPlaceholderArr[i];
-    $swinging.append(div);
-  }
-  
-}
 
 $newGameButton.addEventListener('click', newGame);
 //Add onkeyup event to trigger letterGuess
@@ -142,3 +134,14 @@ document.onkeyup = function(event){
   }
   createSwing();
 }
+
+
+  function createSwing() {
+    $swinging.innerHTML = '';
+    for(var i = 0; i<=pickedWordPlaceholderArr.length-1; i++){
+      var div = document.createElement('div');
+      div.className = 'swingimage';
+      div.textContent = pickedWordPlaceholderArr[i];
+      $swinging.append(div);
+    }
+  }
