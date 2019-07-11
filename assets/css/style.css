@@ -88,11 +88,15 @@ font-size: 130px;
 font-family: serif;
 }
 
-/* .l{
-  margin-top: 45px; 
+@media only screen and (max-width: 1200px){
+  .swingimage{
+  font-size: 123px;
+  }
 }
 
-.f{
-  margin-top: 0px;
-  position: static;
-}*/
+@media only screen and (max-width: 992px){
+  .swingimage{
+  font-size: 84px;
+  }
+}
+
